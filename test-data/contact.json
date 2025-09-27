@@ -1,0 +1,24 @@
+{
+  "validInputs": [
+    {
+      "name": "Jeni Tester",
+      "email": "jeni@example.com",
+      "subject": "Training Inquiry",
+      "message": "I'd like to know more about corporate training."
+    },
+    {
+      "name": "Jenn QA",
+      "email": "jenn.qa@example.com",
+      "subject": "Testing Services",
+      "message": "Can you explain your Testing-as-a-Service offering?"
+    }
+  ],
+  "invalidInputs": [
+    {
+      "name": "",
+      "email": "invalid-email",
+      "subject": "",
+      "message": ""
+    }
+  ]
+}

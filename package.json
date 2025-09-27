@@ -1,0 +1,31 @@
+{
+  "name": "cb-taph-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "contact-test": "npx playwright test tests/contact.spec.ts --project=chromium",
+    "contact-test-ui": "npx playwright test tests/contact.spec.ts --project=chromium --ui",
+    "home-test": "npx playwright test tests/home.spec.ts --project=chromium",
+    "home-test-ui": "npx playwright test tests/home.spec.ts --project=chromium --ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jegspace/playwright-automation-testautomationph.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jegspace/playwright-automation-testautomationph/issues"
+  },
+  "homepage": "https://github.com/jegspace/playwright-automation-testautomationph#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^10.0.0",
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.5.2"
+  }
+}
