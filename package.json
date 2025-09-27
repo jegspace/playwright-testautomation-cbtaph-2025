@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jegspace/playwright-automation-testautomationph.git"
+    "url": "git+https://github.com/jegspace/playwright-testautomation-cbtaph-2025.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jegspace/playwright-automation-testautomationph/issues"
+    "url": "https://github.com/jegspace/playwright-testautomation-cbtaph-2025/issues"
   },
-  "homepage": "https://github.com/jegspace/playwright-automation-testautomationph#readme",
+  "homepage": "https://github.com/jegspace/playwright-testautomation-cbtaph-2025#readme",
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
     "@playwright/test": "^1.55.0",

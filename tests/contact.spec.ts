@@ -36,7 +36,7 @@ test(
     annotation: {
       type: "MODULE",
       description:
-        "Functional testing for contact form, found potential bug: redirects to Netlify error page: https://github.com/jegspace/playwright-automation-testautomationph/issues/1#issuecomment-3342074909",
+        "Functional testing for contact form, found potential bug: redirects to Netlify error page: https://github.com/jegspace/playwright-testautomation-cbtaph-2025/issues/1#issuecomment-3342074909",
     },
   },
   async ({ page }, testInfo) => {
@@ -129,7 +129,7 @@ test(
         annotation: {
           type: "MODULE",
           description:
-            "Functional testing for contact form, found potential bug: https://github.com/jegspace/playwright-automation-testautomationph/issues/1#issuecomment-3342084499",
+            "Functional testing for contact form, found potential bug: https://github.com/jegspace/playwright-testautomation-cbtaph-2025/issues/1#issuecomment-3342084499",
         },
       },
       async ({ page }, testInfo) => {
