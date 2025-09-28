@@ -20,7 +20,7 @@ test.describe(
 
     // Company Info
     test(
-      "Verify Company Header + Description",
+      "Verify Company Header + Description are visible",
       { tag: ["@Footer", "@UI", "@CompanyInfo"] },
       async ({ page }, testInfo) => {
         const company = page.locator(".footer-company");
@@ -34,7 +34,7 @@ test.describe(
 
     // Quick Links
     test(
-      "Verify Quick Links Header + Items",
+      "Verify Quick Links Header + Items are visible",
       { tag: ["@Footer", "@UI", "@QuickLinks"] },
       async ({ page }, testInfo) => {
         const quickLinks = page.locator(".footer-links");
@@ -51,7 +51,7 @@ test.describe(
     );
 
     test(
-      "Verify Footer Quicklink - Home",
+      "Verify Footer Quicklink - Home hyperlink",
       { tag: ["@Footer", "@Functional", "@QuickLinks"] },
       async ({ footerPage, page }, testInfo) => {
         await footerPage.clickQuickLink("Home");
@@ -61,7 +61,7 @@ test.describe(
     );
 
     test(
-      "Verify Footer Quicklink - Services",
+      "Verify Footer Quicklink - Services hyperlink",
       { tag: ["@Footer", "@Functional", "@QuickLinks"] },
       async ({ footerPage, page }, testInfo) => {
         await footerPage.clickQuickLink("Services");
@@ -71,7 +71,7 @@ test.describe(
     );
 
     test(
-      "Verify Footer Quicklink - Testimonials",
+      "Verify Footer Quicklink - Testimonials hyperlink",
       { tag: ["@Footer", "@Functional", "@QuickLinks"] },
       async ({ footerPage, page }, testInfo) => {
         await footerPage.clickQuickLink("Testimonials");
@@ -81,7 +81,7 @@ test.describe(
     );
 
     test(
-      "Verify Footer Quicklink - Blog",
+      "Verify Footer Quicklink - Blog hyperlink",
       { tag: ["@Footer", "@Functional", "@QuickLinks"] },
       async ({ footerPage, page }, testInfo) => {
         await footerPage.clickQuickLink("Blog");
