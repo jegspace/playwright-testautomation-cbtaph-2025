@@ -1,0 +1,128 @@
+name: Run Playwright Test for Labs MariTest
+
+env:
+  LABS_VERCEL_ORG_ID: ${{ secrets.LABS_VERCEL_ORG_ID }}
+  LABS_VERCEL_PROJECT_ID: ${{ secrets.LABS_VERCEL_PROJECT_ID }}
+  VITE_SUPA_PROJ_URL: ${{ secrets.VITE_SUPA_PROJ_URL }}
+  VITE_SUPA_API_KEY: ${{ secrets.VITE_SUPA_API_KEY }}
+
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - labs
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Project Artifacts
+        run: npm run build
+
+      - name: Start Application in Preview Mode
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 &
+          echo "Application started in preview mode at http://127.0.0.1:4173."
+          sleep 10 # Wait for the server to start (adjust as needed)
+
+      - name: Check Server Availability
+        run: |
+          curl --retry 5 --retry-delay 5 --retry-all-errors http://127.0.0.1:4173
+
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright Tests
+        id: playwright-tests
+        run: npx playwright test --project chromium
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
+
+      - name: Send Discord Notification (Test Results)
+        if: always() # Always run this step, regardless of test success or failure
+        run: |
+          if [ "${{ steps.playwright-tests.outcome }}" == 'success' ]; then
+            TEST_RESULT="✅ **All Playwright Tests Passed!**"
+          else
+            TEST_RESULT="❌ **Some Playwright Tests Failed!**"
+          fi
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d "{
+            \"username\": \"Playwright Bot\",
+            \"content\": \"$TEST_RESULT\"
+          }" ${{ secrets.DISCORD_WEBHOOK_URL }}
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist/
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.LABS_VERCEL_TOKEN }}
+
+      - name: Run Vercel Build
+        run: vercel build --token=${{ secrets.LABS_VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts
+        id: deploy
+        run: |
+          DEPLOYMENT_URL=$(vercel deploy --prebuilt --token=${{ secrets.LABS_VERCEL_TOKEN }})
+          echo "DEPLOYMENT_URL=$DEPLOYMENT_URL" >> $GITHUB_ENV
+
+      - name: Send Discord Notification (Deployment Success)
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{
+            "username": "Labs MariTest",
+            "content": "🚀 **Deployment Successful!**\nPreview URL: ${{ env.DEPLOYMENT_URL }}"
+          }' ${{ secrets.DISCORD_WEBHOOK_URL }} || echo "Failed to send success notification"
+
+      - name: Send Discord Notification (Deployment Failed)
+        if: failure() && !success()
+        run: |
+          curl -H "Content-Type: application/json" \
+          -X POST \
+          -d '{
+            "username": "Labs MariTest",
+            "content": "❌ **Deployment Failed!**"
+          }' ${{ secrets.DISCORD_WEBHOOK_URL }} || echo "Failed to send failure notification"

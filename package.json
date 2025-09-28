@@ -16,7 +16,11 @@
     "footer-test": "npx playwright test tests/footer.spec.ts --project=chromium",
     "footer-test-ui": "npx playwright test tests/footer.spec.ts --project=chromium --ui",
     "practiceNow-test": "npx playwright test tests/practiceNow.spec.ts --project=chromium",
-    "practiceNow-test-ui": "npx playwright test tests/practiceNow.spec.ts --project=chromium --ui"
+    "practiceNow-test-ui": "npx playwright test tests/practiceNow.spec.ts --project=chromium --ui",
+    "labsautomation-test": "npx playwright test tests/labsautomation.spec.ts --project=chromium",
+    "labsautomation-test-ui": "npx playwright test tests/labsautomation.spec.ts --project=chromium --ui",
+    "labssidebar-test": "npx playwright test tests/labssidebar.spec.ts --project=chromium",
+    "labssidebar-test-ui": "npx playwright test tests/labssidebar.spec.ts --project=chromium --ui"
   },
   "repository": {
     "type": "git",
