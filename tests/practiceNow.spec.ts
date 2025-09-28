@@ -1,4 +1,4 @@
-import { test, expect } from "../shared/fixtures";
+import { test, expect } from "../shared/base";
 import { attachScreenshot } from "../shared/helpers";
 
 const PRACTICE_NOW_FUNCTIONAL_SCREENSHOT = "practice_now_functional_screenshot";

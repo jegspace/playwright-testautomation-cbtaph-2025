@@ -1,4 +1,4 @@
-import { test, expect } from "../shared/fixtures";
+import { test, expect } from "../shared/base";
 import { attachScreenshot } from "../shared/helpers";
 
 const NAV_UI_SCREENSHOT = "navigation_ui_screenshot";

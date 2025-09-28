@@ -1,4 +1,4 @@
-import { test, expect } from "../shared/fixtures";
+import { test, expect } from "../shared/base";
 import { attachScreenshot } from "../shared/helpers";
 
 const FOOTER_UI_SCREENSHOT = "footer_ui_screenshot";
