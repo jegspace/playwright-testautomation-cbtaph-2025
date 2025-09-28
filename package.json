@@ -9,8 +9,12 @@
     "test:debug": "npx playwright test --debug",
     "contact-test": "npx playwright test tests/contact.spec.ts --project=chromium",
     "contact-test-ui": "npx playwright test tests/contact.spec.ts --project=chromium --ui",
-    "home-test": "npx playwright test tests/home.spec.ts --project=chromium",
-    "home-test-ui": "npx playwright test tests/home.spec.ts --project=chromium --ui"
+    "homepage-test": "npx playwright test tests/homepage.spec.ts --project=chromium",
+    "homepage-test-ui": "npx playwright test tests/homepage.spec.ts --project=chromium --ui",
+    "navigation-test": "npx playwright test tests/navigation.spec.ts --project=chromium",
+    "navigation-test-ui": "npx playwright test tests/navigation.spec.ts --project=chromium --ui",
+    "footer-test": "npx playwright test tests/footer.spec.ts --project=chromium",
+    "footer-test-ui": "npx playwright test tests/footer.spec.ts --project=chromium --ui"
   },
   "repository": {
     "type": "git",
@@ -26,6 +30,7 @@
   "devDependencies": {
     "@faker-js/faker": "^10.0.0",
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.5.2"
+    "@types/node": "^24.5.2",
+    "tsconfig-paths": "^4.2.0"
   }
 }

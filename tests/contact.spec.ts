@@ -5,8 +5,6 @@ import contactData from "../test-data/contact.json";
 import { attachScreenshot, assertFormInputsVisibility } from "../shared/helpers";
 import { faker } from "@faker-js/faker";
 
-const CONTACT_SUCCESS_SCREENSHOT = "contact_form_success";
-const CONTACT_FAILURE_SCREENSHOT = "contact_form_failure";
 const CONTACT_ERROR_SCREENSHOT = "contact_form_error";
 const CONTACT_BOUNDARY_SCREENSHOT = "contact_form_boundary";
 const CONTACT_BUG_SCREENSHOT = "contact_form_bug";
